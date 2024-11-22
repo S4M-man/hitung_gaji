@@ -3,69 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Mulai</title>
+    <title>Sistem Perhitungan Pajak Gaji</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
-            animation: gradientAnimation 6s infinite alternate;
         }
-
-        @keyframes gradientAnimation {
-            0% {
-                background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
-            }
-            100% {
-                background: linear-gradient(135deg, #e6f7ff, #dbeeff);
-            }
-        }
-
-        .button {
-            background-color: #4CAF50; /* Warna hijau */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
+        .container {
+            background: white;
+            padding: 20px;
             border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
         }
-
-        .button:hover {
-            background-color: #45a049; /* Warna hijau lebih gelap */
-            transform: scale(1.1); /* Memperbesar tombol */
-            animation: pulse 1s infinite;
+        h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
         }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(72, 239, 128, 0.6);
-            }
-            70% {
-                box-shadow: 0 0 20px 20px rgba(72, 239, 128, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(72, 239, 128, 0);
-            }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result p {
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <button class="button" onclick="mulai()">Mulai</button>
+    <div class="container">
+        <h1>Sistem Perhitungan Pajak Gaji</h1>
+        <form id="taxForm">
+            <input type="number" id="pendapatan" placeholder="Masukkan pendapatan (Rp)" required>
+            <button type="submit">Hitung</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
 
     <script>
-        function mulai() {
-            window.location.href = "index.php"; // Pindah ke halaman index.php
-        }
+        document.getElementById('taxForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Ambil nilai pendapatan
+            const pendapatan = parseFloat(document.getElementById('pendapatan').value);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Bersihkan hasil sebelumnya
+
+            if (pendapatan < 0) {
+                resultDiv.innerHTML = "<p style='color: red;'>Pendapatan tidak valid!</p>";
+                return;
+            }
+
+            // Hitung pajak
+            let pajak = 0;
+            if (pendapatan <= 3000000) {
+                pajak = Math.max(50000, pendapatan * 0.05);
+            } else if (pendapatan <= 5000000) {
+                pajak = pendapatan * 0.05;
+            } else if (pendapatan <= 10000000) {
+                pajak = pendapatan * 0.10;
+            } else {
+                pajak = pendapatan * 0.15;
+            }
+
+            const pendapatanBersih = pendapatan - pajak;
+
+            // Tampilkan hasil
+            resultDiv.innerHTML = `
+                <p><strong>Pendapatan:</strong> Rp${pendapatan.toLocaleString()}</p>
+                <p><strong>Pajak:</strong> Rp${pajak.toLocaleString()}</p>
+                <p><strong>Pendapatan Bersih:</strong> Rp${pendapatanBersih.toLocaleString()}</p>
+            `;
+        });
     </script>
 </body>
 </html>
