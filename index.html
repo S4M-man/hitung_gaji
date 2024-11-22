@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Mulai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            animation: gradientAnimation 6s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            }
+            100% {
+                background: linear-gradient(135deg, #e6f7ff, #dbeeff);
+            }
+        }
+
+        .button {
+            background-color: #4CAF50; /* Warna hijau */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Warna hijau lebih gelap */
+            transform: scale(1.1); /* Memperbesar tombol */
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(72, 239, 128, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 20px 20px rgba(72, 239, 128, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(72, 239, 128, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="mulai()">Mulai</button>
+
+    <script>
+        function mulai() {
+            window.location.href = "index.php"; // Pindah ke halaman index.php
+        }
+    </script>
+</body>
+</html>
