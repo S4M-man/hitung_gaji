@@ -91,12 +91,13 @@
 
             const pendapatanBersih = pendapatan - pajak;
 
-            // Tampilkan hasil
-            resultDiv.innerHTML = `
-                <p><strong>Pendapatan:</strong> Rp${pendapatan.toLocaleString()}</p>
-                <p><strong>Pajak:</strong> Rp${pajak.toLocaleString()}</p>
-                <p><strong>Pendapatan Bersih:</strong> Rp${pendapatanBersih.toLocaleString()}</p>
-            `;
+           // Tampilkan hasil
+resultDiv.innerHTML = `
+    <p><strong>Pendapatan:</strong> Rp${pendapatan.toLocaleString('id-ID')}</p>
+    <p><strong>Pajak:</strong> Rp${pajak.toLocaleString('id-ID')}</p>
+    <p><strong>Pendapatan Bersih:</strong> Rp${pendapatanBersih.toLocaleString('id-ID')}</p>
+`;
+
         });
     </script>
 </body>
